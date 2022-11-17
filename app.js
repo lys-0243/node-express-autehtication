@@ -2,7 +2,7 @@ const express = require("express");
 const ejs = require("ejs");
 const path = require("path");
 const fs = require("fs");
-const { cours } = require("./data");
+const { cours, utilisateurs } = require("./data");
 const session = require('express-session');
 require('dotenv').config();
 
@@ -26,7 +26,7 @@ app.set("view engine", "html");
 app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
-  console.log(req.session);
+  console.log(utilisateurs);
   res.render("index", { cours });
 });
 app.get("/connexion", (req, res) => {
@@ -37,11 +37,7 @@ app.get("/inscription", (req, res) => {
 });
 
 app.get("/lectureVideo", (req, res) => {
-  if(req.session.idUtilisateur){
-    res.render("lectureVideo");
-  } 
-  res.render("connexion");
-  
+  res.render("lectureVideo");
 });
 
 app.get("/video", (req, res) => {

@@ -1,3 +1,22 @@
+const bcrypt = require("bcrypt");
+var defaultHashedPw;
+const utilisateurs = [];
+
+(async () => {
+  const salt = await bcrypt.genSalt(10);
+  defaultHashedPw = await bcrypt.hash("1234", salt);
+
+  utilisateurs.push({
+    nom: "Sylvain Lys",
+    email: "stk@gmail.com",
+    password: defaultHashedPw,
+  });
+  utilisateurs.push({
+    nom: "Amani Bisimwa",
+    email: "amani@local.com",
+    password: defaultHashedPw,
+  });
+})();
 module.exports = {
   cours: [
     {
@@ -56,16 +75,5 @@ module.exports = {
       lienThumbnail: "/images/thumbnail/youtubeclone.jpg",
     },
   ],
-  utilisateurs: [
-    {
-      nom: "Louis Musole",
-      email: "louis@drcmind.com",
-      password: "1234",
-    },
-    {
-      nom: "Amani Bisimwa",
-      email: "amani@drcmind.com",
-      password: "1234",
-    },
-  ],
+  utilisateurs
 };
